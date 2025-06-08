@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'My Portfolio' %></title>
+  <link href="/css/output.css" rel="stylesheet">
+  <link rel="icon" href="/assets/myLogo.svg">
+</head>
+<body class="bg-navy text-light-slate">
+  <!-- Navigation -->
+  <header class="fixed w-full z-50 bg-navy/80 backdrop-blur-sm">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center">
+        <img src="/assets/logo.svg" alt="Logo" class="h-10 w-10">
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a href="#about" class="text-sm font-mono hover:text-teal transition">01. About</a>
+        <a href="#projects" class="text-sm font-mono hover:text-teal transition">02. Projects</a>
+        <a href="#contact" class="text-sm font-mono hover:text-teal transition">03. Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main>
