@@ -1,0 +1,17 @@
+Express - Web framework for Node.js
+
+EJS - Templating engine for dynamic HTML
+
+PG - PostgreSQL client for Node.js
+
+TailwindCSS - CSS framework for styling
+
+Nodemailer - For handling contact form submissions
+
+Particles.js - For interactive background animations
+
+AOS - Animate On Scroll library
+
+Dotenv - For loading environment variables
+
+Nodemon - For automatic server restarts during development
