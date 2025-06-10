@@ -18,3 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize all functions
   animateOnScroll();
 });
+
+// Skills animation
+document.addEventListener('DOMContentLoaded', () => {
+  const animateBars = () => {
+    document.querySelectorAll('.skill-bar').forEach(bar => {
+      bar.style.width = bar.getAttribute('data-level') + '%';
+    });
+  };
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) animateBars();
+    });
+  }).observe(document.querySelector('#skills'));
+});
