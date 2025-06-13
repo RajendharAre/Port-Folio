@@ -1,24 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title || 'My Portfolio' %></title>
-  <link href="/css/output.css" rel="stylesheet">
-  <link rel="icon" href="/assets/myLogo.html">
-</head>
-<body class="bg-navy text-light-slate">
-  <!-- Navigation -->
-  <header class="fixed w-full z-50 bg-navy/80 backdrop-blur-sm">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="flex items-center">
-        <img src="/assets/myLogo.html" alt="Logo" class="h-10 w-10">
+<header class="fixed w-full z-50 bg-light-primary dark:bg-dark-primary border-b border-light-border dark:border-dark-border backdrop-blur-sm">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/logo.svg" alt="Logo" class="h-8 w-8 dark:invert">
+        <span class="text-xl font-bold text-light-text dark:text-dark-text">Rajendhar Are</span>
       </a>
-      <div class="hidden md:flex space-x-8">
-        <a href="#about" class="text-sm font-mono hover:text-teal transition">About</a>
-        <a href="#projects" class="text-sm font-mono hover:text-teal transition">Projects</a>
-        <a href="#contact" class="text-sm font-mono hover:text-teal transition">Contact</a>
-      </div>
-    </nav>
-  </header>
-  <main>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        
+        <!-- Theme Toggle -->
+        <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-light-secondary dark:hover:bg-dark-secondary transition">
+          <svg class="w-5 h-5 text-light-text dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg class="w-5 h-5 text-dark-text hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg hover:bg-light-secondary dark:hover:bg-dark-secondary">
+        <svg class="w-6 h-6 text-light-text dark:text-dark-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-3 pb-4">
+      <a href="#home" class="block nav-link-mobile">Home</a>
+      <a href="#about" class="block nav-link-mobile">About</a>
+      <a href="#projects" class="block nav-link-mobile">Projects</a>
+      <a href="#experience" class="block nav-link-mobile">Experience</a>
+      <a href="#contact" class="block nav-link-mobile">Contact</a>
+    </div>
+  </div>
+</header>
+
+<div class="h-20"></div> <!-- Spacer for fixed header -->

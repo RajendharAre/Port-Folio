@@ -1,16 +1,23 @@
-  </main>
-  <footer class="py-8 border-t border-slate/20">
-    <div class="container mx-auto px-6 text-center">
-      <div class="flex justify-center space-x-6 mb-6">
-        <a href="#" class="text-slate hover:text-teal transition">GitHub</a>
-        <a href="#" class="text-slate hover:text-teal transition">LinkedIn</a>
-        <a href="#" class="text-slate hover:text-teal transition">Twitter</a>
+<footer class="bg-light-primary dark:bg-dark-primary border-t border-light-border dark:border-dark-border py-8">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <p class="text-light-muted dark:text-dark-muted">
+          &copy; <%= currentYear %>  Rajendhar Are. All rights reserved.
+        </p>
       </div>
-      <p class="text-xs text-slate/60">
-        Designed & Built by Rajendhar Are © <%= new Date().getFullYear() %>
-      </p>
+      <div class="flex space-x-6">
+        <a href="#" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
+          <span class="sr-only">GitHub</span>
+          <!-- GitHub icon -->
+          <iconify-icon name="logos:github-icon" class="w-6 h-6"></iconify-icon>
+        </a>
+        <a href="#" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
+          <span class="sr-only">LinkedIn</span>
+          <!-- LinkedIn icon -->
+          <iconify-icon name="logos:linkedin-icon" class="w-6 h-6"></iconify-icon>
+        </a>
+      </div>
     </div>
-  </footer>
-  <script src="/js/main.js"></script>
-</body>
-</html>
+  </div>
+</footer>
