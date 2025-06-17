@@ -7,6 +7,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+  res.locals.currentYear = new Date().getFullYear();
+  next();
+});
+
 // Mock projects data (temporary solution)
 const projects = [
   {
@@ -47,5 +52,7 @@ app.get('/', (req, res) => {
     projects: projects  // Passing the mock data to your view
   });
 });
+
+
 
 app.listen(3000, () => console.log('Running on http://localhost:3000'));

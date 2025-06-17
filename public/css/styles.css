@@ -31,3 +31,15 @@ html {
 body {
   @apply bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text transition-colors duration-200;
 }
+
+/* Dark mode transitions */
+html.theme-transition,
+html.theme-transition body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Icon visibility control */
+.light-icon.dark-hidden,
+.dark-icon.light-hidden {
+  display: none;
+}
