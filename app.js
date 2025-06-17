@@ -1,47 +1,23 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const fs = require('fs');
+const sgMail = require('@sendgrid/mail');
+const projects = JSON.parse(fs.readFileSync('./data/projects.json'));
+require('dotenv').config();
 
-// Config
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.locals.currentYear = new Date().getFullYear();
   next();
 });
-
-// Mock projects data (temporary solution)
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Website",
-    description: "A full-stack e-commerce platform with payment integration",
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
-    image_url: "/images/project1.jpg",
-    github_url: "https://github.com/yourusername/ecommerce",
-    live_url: "https://yourecommerce.example.com"
-  },
-  {
-    id: 2,
-    title: "Portfolio Template",
-    description: "A responsive portfolio template built with Tailwind CSS",
-    technologies: ["HTML", "Tailwind CSS", "JavaScript"],
-    image_url: "/images/project2.jpg",
-    github_url: "https://github.com/yourusername/portfolio-template",
-    live_url: "https://yourportfolio.example.com"
-  },
-  {
-    id: 3,
-    title: "Task Management App",
-    description: "A CRUD application for managing daily tasks",
-    technologies: ["Node.js", "Express", "PostgreSQL"],
-    image_url: "/images/project3.jpg",
-    github_url: "https://github.com/yourusername/task-app",
-    live_url: "https://yourtaskapp.example.com"
-  }
-];
 
 // Routes
 app.get('/', (req, res) => {
@@ -49,10 +25,35 @@ app.get('/', (req, res) => {
     name: "Rajendhar Are",
     tagline: "Full-stack developer creating digital experiences",
     logoUrl: "/assets/myLogo.svg",
-    projects: projects  // Passing the mock data to your view
+    projects: projects 
   });
 });
 
+app.post('/contact', async (req, res) => {
+  const { name, email, message } = req.body;
 
+  const msg = {
+    to: process.env.CONTACT_EMAIL,
+    from: process.env.CONTACT_EMAIL, // Must match verified domain in SendGrid
+    subject: `New message from ${name}`,
+    text: message,
+    html: `
+      <h3>New Contact Form Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
+      <p><small>Received at ${new Date().toLocaleString()}</small></p>
+    `,
+    replyTo: email // Allows direct replies
+  };
+
+  try {
+    await sgMail.send(msg);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('SendGrid Error:', error.response?.body || error.message);
+    res.status(500).json({ error: 'Failed to send message' });
+  }
+});
 
 app.listen(3000, () => console.log('Running on http://localhost:3000'));
