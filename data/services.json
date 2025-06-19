@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Web Development",
+    "icon": "ph:code",
+    "description": "Full-stack web development using modern technologies like React, Node.js, and MongoDB to build responsive, high-performance applications.",
+    "features": [
+      "Frontend (React, Tailwind CSS)",
+      "Backend (Node.js, Express)",
+      "Database (MongoDB, PostgreSQL)"
+    ]
+  },
+  {
+    "title": "UI/UX Design",
+    "icon": "ph:paint-brush",
+    "description": "Creating intuitive and beautiful user interfaces with a focus on user experience and accessibility.",
+    "features": [
+      "Logo Design",
+      "Page Layouts",
+      "Figma & Adobe XD"
+    ]
+  },
+  {
+    "title": "Machine Learning",
+    "icon": "ph:brain",
+    "description": "Building and deploying machine learning models for predictive analytics and data-driven solutions.",
+    "features": [
+      "Python (NumPy, Pandas, Matplotlib)",
+      "Sckit-learn",
+      "Model Deployment"
+    ]
+  }
+]

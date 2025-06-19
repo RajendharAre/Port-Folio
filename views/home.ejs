@@ -265,6 +265,47 @@
       </div>
     </div>
   </section>
+
+  <!-- Services Section -->
+  <!-- Services Section -->
+<section id="services" class="py-20 bg-light-primary dark:bg-dark-primary">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 animate-[fadeIn_0.8s_ease-out]">
+      <h2 class="text-3xl font-bold mb-4">What I Offer</h2>
+      <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">Comprehensive solutions tailored to your needs</p>
+      <div class="w-20 h-1 bg-light-accent dark:bg-dark-accent mx-auto mt-4 animate-[scaleX_1s_ease-out]"></div>
+    </div>
+
+    <% if (typeof services !== 'undefined') { %>
+      <!-- Grid container with max 3 columns and centered -->
+      <div class="flex flex-wrap justify-center gap-8 mx-auto" style="max-width: 1200px;">
+        <% services.forEach((service, index) => { %>
+          <!-- Service card with fixed width -->
+          <div class="service-card bg-light-card dark:bg-dark-card p-8 rounded-xl border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 transition-all duration-300 transform hover:-translate-y-2 shadow-md hover:shadow-lg animate-[fadeInUp_0.5s_ease-out] w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2.666rem)]"
+               style="animation-delay: 0.2s; max-width: 380px;">
+            <div class="w-14 h-14 bg-light-accent/10 dark:bg-dark-accent/10 rounded-lg flex items-center justify-center mb-6">
+              <iconify-icon icon="<%= service.icon %>" class="text-3xl text-light-accent dark:text-dark-accent"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-bold mb-4"><%= service.title %></h3>
+            <p class="text-light-muted dark:text-dark-muted mb-4">
+              <%= service.description %>
+            </p>
+            <ul class="space-y-2 text-sm text-light-muted dark:text-dark-muted">
+              <% service.features.forEach(feature => { %>
+                <li class="flex items-center">
+                  <iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mr-2"></iconify-icon>
+                  <%= feature %>
+                </li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-red-500 text-center">No services data loaded</p>
+    <% } %>
+  </div>
+</section>
      
   <!-- Contact Section -->
   <section id="contact" class="py-20 bg-light-secondary dark:bg-dark-secondary">

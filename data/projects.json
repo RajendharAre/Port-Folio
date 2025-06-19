@@ -4,7 +4,7 @@
     "title": "Fashion E-Commerce Website",
     "description": "A full-stack e-commerce platform with admin and user interfaces",
     "technologies": ["HTML", "CSS", "JavaScript", "Python", "Flask", "SQLAlchemy"],
-    "image_url": "/images/project1.jpg",
+    "image_url": "/assets/projectImages/FashionFindsProject.png",
     "github_url": "https://github.com/RajendharAre/FashionEcommerce",
     "live_url": "https://yourecommerce.example.com"
   },
@@ -13,7 +13,7 @@
     "title": "Portfolio Template",
     "description": "A responsive portfolio template built with Tailwind CSS",
     "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
-    "image_url": "/images/project2.jpg",
+    "image_url": "",
     "github_url": "https://github.com/yourusername/portfolio-template",
     "live_url": "https://yourportfolio.example.com"
   },
@@ -22,7 +22,7 @@
     "title": "Task Management App",
     "description": "A CRUD application for managing daily tasks",
     "technologies": ["Node.js", "Express", "PostgreSQL"],
-    "image_url": "/images/project3.jpg",
+    "image_url": "/assets/projectImages/SimplifyUI.png",
     "github_url": "https://github.com/yourusername/task-app",
     "live_url": "https://yourtaskapp.example.com"
   }

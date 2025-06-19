@@ -2,11 +2,21 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fs = require('fs');
-const sgMail = require('@sendgrid/mail');
+// const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
 const projects = JSON.parse(fs.readFileSync('./data/projects.json'));
+const services = JSON.parse(fs.readFileSync('./data/services.json'));
 require('dotenv').config();
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +35,8 @@ app.get('/', (req, res) => {
     name: "Rajendhar Are",
     tagline: "Full-stack developer creating digital experiences",
     logoUrl: "/assets/myLogo.svg",
-    projects: projects 
+    projects: projects,
+    services: services
   });
 });
 
@@ -47,11 +58,11 @@ app.post('/contact', async (req, res) => {
     replyTo: email // Allows direct replies
   };
 
-  try {
-    await sgMail.send(msg);
+   try {
+    await transporter.sendMail(msg);
     res.status(200).json({ success: true });
   } catch (error) {
-    console.error('SendGrid Error:', error.response?.body || error.message);
+    console.error('Nodemailer Error:', error);
     res.status(500).json({ error: 'Failed to send message' });
   }
 });
