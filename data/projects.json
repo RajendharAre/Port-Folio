@@ -4,7 +4,7 @@
     "title": "Fashion E-Commerce Website",
     "description": "A full-stack e-commerce platform with admin and user interfaces",
     "technologies": ["HTML", "CSS", "JavaScript", "Python", "Flask", "SQLAlchemy"],
-    "image_url": "/assets/projectImages/FashionFindsProject.png",
+    "image_url": "/assets/projectImages/FashionFinds.png",
     "github_url": "https://github.com/RajendharAre/FashionEcommerce",
     "live_url": "https://yourecommerce.example.com"
   },
@@ -13,7 +13,7 @@
     "title": "Portfolio Template",
     "description": "A responsive portfolio template built with Tailwind CSS",
     "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
-    "image_url": "",
+    "image_url": "/assets/projectImages/Portfolio.png",
     "github_url": "https://github.com/yourusername/portfolio-template",
     "live_url": "https://yourportfolio.example.com"
   },
