@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run watch-css\" \"nodemon app.js\"",
     "watch-css": "tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --watch",
-    "build-css": "tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --minify"
+    "build-css": "tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --minify",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
