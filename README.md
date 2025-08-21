@@ -36,9 +36,10 @@ Built for anyone to easily explore my work, whether you're a recruiter, collabor
 
 ---
 
-## 📽️ Demo Video
+## 🎥 Demo Video
 
-![Portfolio Demo](https://drive.google.com/file/d/1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_/view?usp=drive_link)
+[![Watch the video](https://img.shields.io/badge/▶️%20Watch%20Demo-Video-red?style=for-the-badge&logo=google-drive)](https://drive.google.com/file/d/1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_/view?usp=drive_link)
+
 
 ---
 
