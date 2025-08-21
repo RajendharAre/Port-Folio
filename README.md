@@ -38,7 +38,7 @@ Built for anyone to easily explore my work, whether you're a recruiter, collabor
 
 ## 🎬 Demo Video
 
-<video src="https://drive.google.com/uc?export=download&id=1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_" controls width="600">
+<video src="https://drive.google.com/file/d/1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_/view?usp=drive_link" controls width="600">
     Your browser does not support the video tag.
 </video>
 
