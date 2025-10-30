@@ -43,3 +43,132 @@ html.theme-transition body {
 .dark-icon.light-hidden {
   display: none;
 }
+
+/* Performance optimizations */
+* {
+  will-change: auto; /* Reset will-change */
+}
+
+/* Optimize animations for performance */
+.animate-\[pulse_8s_infinite\],
+.animate-\[pulse_12s_infinite\] {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize for repaints and reflows */
+.skill-bar {
+  will-change: width;
+  transform: translateZ(0);
+}
+
+/* Keyframes optimization */
+@keyframes pulse {
+  0%, 100% {
+    transform: translateZ(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateZ(0) scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Optimize fade animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    will-change: opacity;
+  }
+  to { 
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    will-change: transform, opacity;
+  }
+  to { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from { 
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+    will-change: transform, opacity;
+  }
+  to { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from { 
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+    will-change: transform, opacity;
+  }
+  to { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from { 
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    will-change: transform, opacity;
+  }
+  to { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleX {
+  from { 
+    transform: scaleX(0);
+    will-change: transform;
+  }
+  to { 
+    transform: scaleX(1);
+  }
+}
+
+/* Optimize bounce animation */
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  40%, 43% {
+    transform: translate3d(0, -10px, 0);
+  }
+  70% {
+    transform: translate3d(0, -5px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.animate-bounce {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
