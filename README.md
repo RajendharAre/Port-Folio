@@ -36,11 +36,18 @@ Built for anyone to easily explore my work, whether you're a recruiter, collabor
 
 ---
 
+<<<<<<< HEAD
 ## 🎬 Demo Video
 
 <video src="https://drive.google.com/file/d/1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_/view?usp=drive_link" controls width="600">
     Your browser does not support the video tag.
 </video>
+=======
+## 🎥 Demo Video
+
+[![Watch the video](https://img.shields.io/badge/▶️%20Watch%20Demo-Video-red?style=for-the-badge&logo=google-drive)](https://drive.google.com/file/d/1S3XdggVBCQsUQ-P029O2izb4f8RnPUH_/view?usp=drive_link)
+
+>>>>>>> ff5d752e25213b64ef9eb943ae2ac177c2a351fe
 
 ---
 
@@ -79,8 +86,12 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 ## 🙋‍♂️ Author
 
 **Rajendhar Are**  
+
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/RajendharAre)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/rajendhar-are/)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/rajendhar-are/)
+
 
 ---
 
