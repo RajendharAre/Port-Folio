@@ -4,8 +4,14 @@ const path = require('path');
 const fs = require('fs');
 // const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
-const projects = JSON.parse(fs.readFileSync('./data/projects.json'));
-const services = JSON.parse(fs.readFileSync('./data/services.json'));
+
+// Use path.resolve to correctly locate data files
+const projectsPath = path.resolve(__dirname, 'data', 'projects.json');
+const servicesPath = path.resolve(__dirname, 'data', 'services.json');
+
+const projects = JSON.parse(fs.readFileSync(projectsPath));
+const services = JSON.parse(fs.readFileSync(servicesPath));
+
 require('dotenv').config();
 
 // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
