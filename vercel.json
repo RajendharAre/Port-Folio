@@ -24,7 +24,7 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/(.*)",
+      "src": "/(?!css/|js/|assets/|api/)(.*)",
       "dest": "/api/index.js"
     }
   ],

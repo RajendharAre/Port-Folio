@@ -5,6 +5,15 @@ const fs = require('fs');
 // const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
 
+// Build CSS on startup to ensure it exists
+try {
+  const { execSync } = require('child_process');
+  execSync('npm run build-css', { stdio: 'ignore' });
+  console.log('CSS built successfully');
+} catch (error) {
+  console.log('CSS build skipped or failed:', error.message);
+}
+
 // Use path.resolve to correctly locate data files
 const projectsPath = path.resolve(__dirname, 'data', 'projects.json');
 const servicesPath = path.resolve(__dirname, 'data', 'services.json');
