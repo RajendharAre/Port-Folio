@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs');
 // const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
+app.use(express.static('public'));
+
 
 // Use path.resolve to correctly locate data files
 const projectsPath = path.resolve(__dirname, 'data', 'projects.json');
@@ -28,7 +30,17 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files - this is the key part for Vercel
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'),
+    {
+    maxAge: '30d',        // Cache static assets for 30 days
+    etag: true,           // Enable ETag headers for version control
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache'); // Always revalidate HTML
+      }
+    }
+  }
+));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
