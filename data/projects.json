@@ -4,7 +4,7 @@
     "title": "Fashion E-Commerce Website",
     "description": "A full-stack e-commerce platform with admin and user interfaces",
     "technologies": ["HTML", "CSS", "JavaScript", "Python", "Flask", "SQLAlchemy"],
-    "image_url": "/assets/projectImages/FashionFinds.png",
+    "image_url": "/assets/projectImages/FashionFinds.webp",
     "github_url": "https://github.com/RajendharAre/FashionEcommerce",
     "live_url": "https://yourecommerce.example.com"
   },
@@ -13,7 +13,7 @@
     "title": "Portfolio Template",
     "description": "A responsive portfolio template built with Tailwind CSS",
     "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
-    "image_url": "/assets/projectImages/Portfolio.png",
+    "image_url": "/assets/projectImages/Portfolio.webp",
     "github_url": "https://github.com/RajendharAre/Port-Folio",
     "live_url": "https://yourportfolio.example.com"
   },
@@ -22,7 +22,7 @@
     "title": "Chat Bot Application",
     "description": "A Multitasking AI agent",
     "technologies": ["Python", "Google API", "HTML", "CSS", "JavaScript"],
-    "image_url": "/assets/projectImages/MultiAgent.png",
+    "image_url": "/assets/projectImages/MultiAgent.webp",
     "github_url": "https://github.com/RajendharAre/ezSCM-internship-project",
     "live_url": "https://yourtaskapp.example.com"
   }
