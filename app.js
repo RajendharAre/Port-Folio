@@ -5,15 +5,6 @@ const fs = require('fs');
 // const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
 
-// Build CSS on startup to ensure it exists
-try {
-  const { execSync } = require('child_process');
-  execSync('npm run build-css', { stdio: 'ignore' });
-  console.log('CSS built successfully');
-} catch (error) {
-  console.log('CSS build skipped or failed:', error.message);
-}
-
 // Use path.resolve to correctly locate data files
 const projectsPath = path.resolve(__dirname, 'data', 'projects.json');
 const servicesPath = path.resolve(__dirname, 'data', 'services.json');
@@ -36,12 +27,7 @@ const transporter = nodemailer.createTransport({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Serve static files - try multiple approaches for Vercel compatibility
-app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
-app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
-app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
-
-// Also serve the entire public directory as a fallback
+// Serve static files - this is the key part for Vercel
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
