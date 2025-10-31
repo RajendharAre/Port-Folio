@@ -26,7 +26,12 @@ const transporter = nodemailer.createTransport({
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'));
+
+// Serve static files with explicit path configuration for Vercel
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
