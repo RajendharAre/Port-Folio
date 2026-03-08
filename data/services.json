@@ -2,31 +2,31 @@
   {
     "title": "Web Development",
     "icon": "ph:code",
-    "description": "Full-stack web development using modern technologies like React, Node.js, and MongoDB to build responsive, high-performance applications.",
+    "description": "End-to-end web development using modern technologies. I build fast, responsive and scalable applications — from pixel-perfect frontends to robust server-side APIs.",
     "features": [
-      "Frontend (React, Tailwind CSS)",
-      "Backend (Node.js, Express)",
-      "Database (MongoDB, PostgreSQL)"
+      "Frontend — React, Tailwind CSS, EJS",
+      "Backend — Node.js, Express, Python/Flask",
+      "Database — PostgreSQL, MongoDB, SQLAlchemy"
     ]
   },
   {
     "title": "UI/UX Design",
     "icon": "ph:paint-brush",
-    "description": "Creating intuitive and beautiful user interfaces with a focus on user experience and accessibility.",
+    "description": "Designing clean, intuitive interfaces that users actually enjoy. I focus on visual hierarchy, accessibility and consistency across every screen size.",
     "features": [
-      "Logo Design",
-      "Page Layouts",
-      "Figma & Adobe XD"
+      "Wireframing & Prototyping in Figma",
+      "Responsive Layouts & Design Systems",
+      "Logo Design & Brand Identity"
     ]
   },
   {
     "title": "Machine Learning",
     "icon": "ph:brain",
-    "description": "Building and deploying machine learning models for predictive analytics and data-driven solutions.",
+    "description": "Building and deploying ML models that turn raw data into actionable insights. From data wrangling to model evaluation and deployment.",
     "features": [
-      "Python (NumPy, Pandas, Matplotlib)",
-      "Sckit-learn",
-      "Model Deployment"
+      "Data Analysis — NumPy, Pandas, Matplotlib",
+      "Model Building — Scikit-learn",
+      "API Deployment & Integration"
     ]
   }
 ]

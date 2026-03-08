@@ -3,15 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= name %> | Portfolio</title>
+  <title><%= name %> | Full-Stack Developer Portfolio</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Rajendhar Are — Full-stack developer specialising in React, Node.js, Express, PostgreSQL and UI/UX design. Based in Telangana, India.">
+  <meta name="keywords" content="Rajendhar Are, full-stack developer, web developer, React, Node.js, portfolio, Telangana, India">
+  <meta name="author" content="Rajendhar Are">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://rajendhar-are33.vercel.app/">
+
+  <!-- Open Graph (Facebook / LinkedIn preview) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rajendhar-are33.vercel.app/">
+  <meta property="og:title" content="Rajendhar Are | Full-Stack Developer Portfolio">
+  <meta property="og:description" content="Full-stack developer creating fast, responsive and elegant web experiences with React, Node.js and modern tooling.">
+  <meta property="og:image" content="https://rajendhar-are33.vercel.app/assets/RajendharImage.webp">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rajendhar Are | Full-Stack Developer Portfolio">
+  <meta name="twitter:description" content="Full-stack developer creating fast, responsive and elegant web experiences.">
+  <meta name="twitter:image" content="https://rajendhar-are33.vercel.app/assets/RajendharImage.webp">
+
+  <!-- Theme colour (browser UI tint) -->
+  <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: dark)">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/myLogo.svg">
+  <link rel="shortcut icon" href="/assets/myLogo.svg">
+
+  <!-- Preconnect to Iconify CDN for faster icon loading -->
+  <link rel="preconnect" href="https://code.iconify.design">
+  <link rel="dns-prefetch" href="https://code.iconify.design">
+
   <link rel="stylesheet" href="/css/output.css">
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- Inline critical CSS for page preloader — renders BEFORE output.css downloads -->
+  <style>
+    #page-preloader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #ffffff;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    html.dark #page-preloader { background: #0a0a0a; }
+    #page-preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .preloader-ring {
+      width: 48px; height: 48px;
+      border: 4px solid #e2e8f0;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    html.dark .preloader-ring { border-color: #334155; border-top-color: #3b82f6; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body class="bg-light-primary dark:bg-dark-primary min-h-screen text-light-text dark:text-dark-text transition-colors duration-300">
+
+  <!-- Page Preloader: visible instantly, hidden once page is ready -->
+  <div id="page-preloader" aria-hidden="true">
+    <div class="preloader-ring"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress" class="fixed top-0 left-0 h-[3px] w-0 bg-gradient-to-r from-light-accent via-blue-400 to-cyan-400 dark:from-dark-accent dark:via-blue-400 dark:to-cyan-400 z-[9999]"></div>
+
   <%- include('partials/header', { title: 'Rajendhar Are | Portfolio' }) %>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center overflow-hidden">
+  <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
     <!-- Animated gradient background -->
     <div class="absolute inset-0 z-0 overflow-hidden">
       <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-light-accent/10 dark:bg-dark-accent/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-[pulse_8s_infinite]"></div>
@@ -24,7 +86,7 @@
       </h1>
       
       <h2 class="text-2xl md:text-4xl mt-4 max-w-2xl text-light-muted dark:text-dark-muted" data-aos="animate-[fadeIn_1.2s_ease-out]">
-        <%= tagline %>
+        <span id="typewriter"></span><span id="typewriter-cursor" class="typewriter-cursor inline-block w-[2px] h-7 md:h-10 bg-light-accent dark:bg-dark-accent ml-1 align-middle"></span>
       </h2>
       
       <div class="mt-12 flex flex-wrap gap-4" data-aos="animate-[fadeInUp_1.4s_ease-out]">
@@ -35,6 +97,40 @@
         <a href="#contact" 
            class="px-8 py-3 border-2 border-light-accent dark:border-dark-accent text-light-accent dark:text-dark-accent rounded-lg hover:bg-light-accent/10 dark:hover:bg-dark-accent/10 transition-all duration-300 transform hover:-translate-y-1">
           Get In Touch
+        </a>
+        <a href="/assets/Rajendhar_Resume.pdf"
+           download="Rajendhar_Are_Resume.pdf"
+           class="px-8 py-3 flex items-center gap-2 border-2 border-light-border dark:border-dark-border text-light-text dark:text-dark-text rounded-lg hover:border-light-accent dark:hover:border-dark-accent hover:text-light-accent dark:hover:text-dark-accent transition-all duration-300 transform hover:-translate-y-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+          </svg>
+          Download CV
+        </a>
+      </div>
+
+      <!-- Hero Social Links -->
+      <div class="mt-8 flex items-center gap-5" data-aos="animate-[fadeIn_1.6s_ease-out]">
+        <span class="text-sm text-light-muted dark:text-dark-muted">Find me on</span>
+        <a href="https://github.com/RajendharAre" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-sm text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/rajendhar-are/" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-sm text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="mailto:arerajendhar2903@gmail.com"
+           class="flex items-center gap-2 text-sm text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Email
         </a>
       </div>
     </div>
@@ -48,7 +144,7 @@
   </section>
 
   <!-- About Section -->
-    <section id="about" class="py-20 bg-light-secondary dark:bg-dark-secondary">
+    <section id="about" class="py-20 bg-light-primary dark:bg-dark-primary">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16" data-aos="animate-[fadeIn_0.8s_ease-out]">
         <h2 class="text-3xl font-bold text-light-text dark:text-dark-text mb-4">About Me</h2>
@@ -59,7 +155,16 @@
         <!-- Profile Image -->
         <div class="w-full lg:w-1/3 flex justify-center" data-aos="animate-[fadeInLeft_1s_ease-out]">
             <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-4 border-light-accent/20 dark:border-dark-accent/20 shadow-xl hover:shadow-2xl transition-all duration-500 group">
-            <img src="/assets/RajendharImage.webp" alt="Rajendhar Are" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <!-- skeleton shown until image loads -->
+            <div class="img-skeleton absolute inset-0 rounded-2xl"></div>
+            <img src="/assets/Rajendhar_Cropped.webp"
+                 alt="Rajendhar Are"
+                 width="320" height="320"
+                 class="relative w-full h-full object-cover group-hover:scale-105 transition-all duration-700 opacity-0"
+                 loading="eager"
+                 fetchpriority="high"
+                 onload="this.classList.add('opacity-100'); this.previousElementSibling.style.display='none';"
+                 onerror="this.src='/assets/RajendharImage.webp';">
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
         </div>
@@ -216,6 +321,83 @@
   </div>
   </section>
 
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 bg-light-primary dark:bg-dark-primary">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16" data-aos="animate-[fadeIn_0.8s_ease-out]">
+        <h2 class="text-3xl font-bold mb-4">Experience &amp; Education</h2>
+        <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">My journey so far</p>
+        <div class="w-20 h-1 bg-light-accent dark:bg-dark-accent mx-auto mt-4" data-aos="animate-[scaleX_1s_ease-out]"></div>
+      </div>
+
+      <div class="relative max-w-3xl mx-auto">
+        <!-- Vertical timeline line -->
+        <div class="absolute left-6 top-2 bottom-2 w-0.5 bg-light-border dark:bg-dark-border"></div>
+
+        <!-- Entry 1: Internship -->
+        <div class="relative pl-16 pb-12" data-aos="animate-[fadeInUp_0.5s_ease-out]">
+          <div class="absolute left-[18px] top-1 w-4 h-4 rounded-full bg-light-accent dark:bg-dark-accent border-4 border-light-secondary dark:border-dark-secondary shadow-md"></div>
+          <div class="bg-light-card dark:bg-dark-card rounded-xl p-6 border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 shadow-md hover:shadow-lg transition-all duration-300">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent text-xs rounded-full font-medium">Jul 2024 – Oct 2024</span>
+              <span class="text-xs text-light-muted dark:text-dark-muted flex items-center gap-1">
+                <iconify-icon icon="ph:briefcase" class="text-sm"></iconify-icon> Internship
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-light-text dark:text-dark-text">Software Development Intern</h3>
+            <p class="text-light-accent dark:text-dark-accent font-medium text-sm mt-1">ezSCM Technology</p>
+            <ul class="mt-4 space-y-2 text-sm text-light-muted dark:text-dark-muted">
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Built a Multi-Tasking AI Agent chatbot using Python &amp; Google Gemini API</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Developed a full-stack web interface with HTML, CSS, and JavaScript</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Collaborated in an Agile team environment to deliver features on schedule</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Entry 2: Freelance -->
+        <div class="relative pl-16 pb-12" data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="100">
+          <div class="absolute left-[18px] top-1 w-4 h-4 rounded-full bg-light-accent dark:bg-dark-accent border-4 border-light-secondary dark:border-dark-secondary shadow-md"></div>
+          <div class="bg-light-card dark:bg-dark-card rounded-xl p-6 border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 shadow-md hover:shadow-lg transition-all duration-300">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent text-xs rounded-full font-medium">2023 – Present</span>
+              <span class="text-xs text-light-muted dark:text-dark-muted flex items-center gap-1">
+                <iconify-icon icon="ph:laptop" class="text-sm"></iconify-icon> Freelance
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-light-text dark:text-dark-text">Freelance Full-Stack Developer</h3>
+            <p class="text-light-accent dark:text-dark-accent font-medium text-sm mt-1">Self-Employed</p>
+            <ul class="mt-4 space-y-2 text-sm text-light-muted dark:text-dark-muted">
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Designed and developed responsive web applications for clients</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Built e-commerce solutions using Flask, Python &amp; PostgreSQL</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mt-0.5 shrink-0"></iconify-icon>Crafted pixel-perfect UIs using Tailwind CSS and Figma designs</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Entry 3: Education -->
+        <div class="relative pl-16" data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="200">
+          <div class="absolute left-[18px] top-1 w-4 h-4 rounded-full bg-purple-500 border-4 border-light-secondary dark:border-dark-secondary shadow-md"></div>
+          <div class="bg-light-card dark:bg-dark-card rounded-xl p-6 border border-light-border dark:border-dark-border hover:border-purple-500/30 shadow-md hover:shadow-lg transition-all duration-300">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 bg-purple-500/10 text-purple-500 text-xs rounded-full font-medium">2021 – 2025</span>
+              <span class="text-xs text-light-muted dark:text-dark-muted flex items-center gap-1">
+                <iconify-icon icon="ph:graduation-cap" class="text-sm"></iconify-icon> Education
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-light-text dark:text-dark-text">B.E. Computer Science (Data Science)</h3>
+            <p class="text-purple-500 font-medium text-sm mt-1">MVSR Engineering College, Hyderabad</p>
+            <ul class="mt-4 space-y-2 text-sm text-light-muted dark:text-dark-muted">
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-purple-500 mt-0.5 shrink-0"></iconify-icon>Specialised in Data Science, Machine Learning and Full-Stack Development</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-purple-500 mt-0.5 shrink-0"></iconify-icon>Completed hands-on projects in AI, web development, and UI/UX design</li>
+              <li class="flex items-start gap-2"><iconify-icon icon="ph:check-circle" class="text-purple-500 mt-0.5 shrink-0"></iconify-icon>Active participant in tech events and open-source contributions</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects" class="py-20 bg-light-primary dark:bg-dark-primary">
     <div class="container mx-auto px-6">
@@ -228,25 +410,31 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <% if (typeof projects !== 'undefined') { %>
           <% projects.forEach((project, index) => { %>
-            <div class="project-card bg-light-card dark:bg-dark-card rounded-xl overflow-hidden border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 transition-all duration-300 transform hover:-translate-y-2 shadow-md hover:shadow-lg" data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="<%= (index % 3) * 100 %>">
+            <div class="project-card bg-light-card dark:bg-dark-card rounded-xl overflow-hidden border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 transition-all duration-300 transform hover:-translate-y-2 shadow-md hover:shadow-lg flex flex-col" data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="<%= (index % 3) * 100 %>">
               
-              <div class="relative h-56 overflow-hidden group">
+              <div class="relative h-56 overflow-hidden group img-skeleton">
                 <img src="<%= project.image_url %>" 
                      alt="<%= project.title %>" 
-                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <!-- <a href="<%= project.live_url %>" target="_blank" class="mr-4 bg-white text-black px-4 py-2 rounded hover:bg-gray-100 transition">Live Demo</a> -->
-                  <a href="<%= project.github_url %>" target="_blank" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Code</a>
+                     width="600" height="224"
+                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-0"
+                     loading="lazy"
+                     onload="this.classList.add('opacity-100'); this.parentElement.classList.remove('img-skeleton');"
+                     onerror="this.parentElement.classList.remove('img-skeleton'); this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'224\'><rect width=\'100%\' height=\'100%\' fill=\'%23334155\'></rect><text x=\'50%\' y=\'50%\' fill=\'%2394a3b8\' text-anchor=\'middle\' dy=\'.3em\' font-family=\'sans-serif\'>Image unavailable</text></svg>'; this.classList.add('opacity-100');">
+                <!-- Category + Year badges -->
+                <div class="absolute top-3 left-3 flex gap-2">
+                  <% if (project.category) { %>
+                    <span class="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-md font-medium"><%= project.category %></span>
+                  <% } %>
+                  <% if (project.year) { %>
+                    <span class="px-2 py-1 bg-light-accent/80 dark:bg-dark-accent/80 backdrop-blur-sm text-white text-xs rounded-md font-medium"><%= project.year %></span>
+                  <% } %>
                 </div>
               </div>
               
-              <div class="p-6">
-                <div class="flex justify-between items-start">
-                  <h3 class="text-xl font-bold"><%= project.title %></h3>
-                </div>
-                
-                <p class="mt-3 text-light-muted dark:text-dark-muted text-sm"><%= project.description %></p>
+              <!-- Card body -->
+              <div class="p-6 flex flex-col flex-1">
+                <h3 class="text-xl font-bold"><%= project.title %></h3>
+                <p class="mt-3 text-light-muted dark:text-dark-muted text-sm flex-1"><%= project.description %></p>
                 
                 <div class="mt-4 flex flex-wrap gap-2">
                   <% project.technologies.forEach(tech => { %>
@@ -255,6 +443,26 @@
                     </span>
                   <% }) %>
                 </div>
+
+                <!-- Permanent action bar -->
+                <div class="mt-5 pt-4 border-t border-light-border dark:border-dark-border flex items-center gap-3">
+                  <a href="<%= project.github_url %>" target="_blank" rel="noopener noreferrer"
+                     class="flex items-center gap-1.5 text-sm font-medium text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                    </svg>
+                    Source Code
+                  </a>
+                  <% if (project.live_url && project.live_url.trim() !== '') { %>
+                    <a href="<%= project.live_url %>" target="_blank" rel="noopener noreferrer"
+                       class="ml-auto flex items-center gap-1.5 text-sm font-medium px-4 py-1.5 bg-light-accent dark:bg-dark-accent text-white rounded-lg hover:bg-light-hover dark:hover:bg-dark-hover transition-colors">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                      </svg>
+                      Live Demo
+                    </a>
+                  <% } %>
+                </div>
               </div>
             </div>
           <% }) %>
@@ -262,11 +470,22 @@
           <p class="text-red-500 col-span-3 text-center">No projects data loaded</p>
         <% } %>
       </div>
+
+      <!-- View all on GitHub CTA -->
+      <div class="text-center mt-12" data-aos="animate-[fadeInUp_0.5s_ease-out]">
+        <a href="https://github.com/RajendharAre" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-6 py-3 border-2 border-light-border dark:border-dark-border rounded-lg text-light-muted dark:text-dark-muted hover:border-light-accent dark:hover:border-dark-accent hover:text-light-accent dark:hover:text-dark-accent transition-all duration-300">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+          </svg>
+          View All Projects on GitHub
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Services Section -->
-<section id="services" class="py-20 bg-light-primary dark:bg-dark-primary">
+<section id="services" class="py-20 bg-light-secondary dark:bg-dark-secondary">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16" data-aos="animate-[fadeIn_0.8s_ease-out]">
       <h2 class="text-3xl font-bold mb-4">What I Offer</h2>
@@ -275,23 +494,21 @@
     </div>
 
     <% if (typeof services !== 'undefined') { %>
-      <!-- Grid container with max 3 columns and centered -->
-      <div class="flex flex-wrap justify-center gap-8 mx-auto" style="max-width: 1200px;">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <% services.forEach((service, index) => { %>
-          <!-- Service card with fixed width -->
-          <div class="service-card bg-light-card dark:bg-dark-card p-8 rounded-xl border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 transition-all duration-300 transform hover:-translate-y-2 shadow-md hover:shadow-lg w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2.666rem)]"
-               style="max-width: 380px;" data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="<%= (index % 3) * 100 %>">
+          <div class="service-card bg-light-card dark:bg-dark-card p-8 rounded-xl border border-light-border dark:border-dark-border hover:border-light-accent/30 dark:hover:border-dark-accent/30 transition-all duration-300 transform hover:-translate-y-2 shadow-md hover:shadow-lg"
+               data-aos="animate-[fadeInUp_0.5s_ease-out]" data-aos-delay="<%= (index % 3) * 100 %>">
             <div class="w-14 h-14 bg-light-accent/10 dark:bg-dark-accent/10 rounded-lg flex items-center justify-center mb-6">
               <iconify-icon icon="<%= service.icon %>" class="text-3xl text-light-accent dark:text-dark-accent"></iconify-icon>
             </div>
-            <h3 class="text-xl font-bold mb-4"><%= service.title %></h3>
-            <p class="text-light-muted dark:text-dark-muted mb-4">
+            <h3 class="text-xl font-bold mb-3"><%= service.title %></h3>
+            <p class="text-light-muted dark:text-dark-muted text-sm mb-5">
               <%= service.description %>
             </p>
             <ul class="space-y-2 text-sm text-light-muted dark:text-dark-muted">
               <% service.features.forEach(feature => { %>
-                <li class="flex items-center">
-                  <iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent mr-2"></iconify-icon>
+                <li class="flex items-center gap-2">
+                  <iconify-icon icon="ph:check-circle" class="text-light-accent dark:text-dark-accent shrink-0"></iconify-icon>
                   <%= feature %>
                 </li>
               <% }) %>
@@ -306,7 +523,7 @@
 </section>
      
   <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-light-secondary dark:bg-dark-secondary">
+  <section id="contact" class="py-20 bg-light-primary dark:bg-dark-primary">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16" data-aos="animate-[fadeIn_0.8s_ease-out]">
@@ -330,7 +547,7 @@
                 </div>
                 <div>
                   <h4 class="font-medium">Email Me</h4>
-                  <a href="mailto:you@example.com" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">arerajendhar2903@gmail.com</a>
+                  <a href="mailto:arerajendhar2903@gmail.com" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">arerajendhar2903@gmail.com</a>
                 </div>
               </div>
               
@@ -481,7 +698,32 @@
 
   </section>
 
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+    aria-label="Back to top"
+    class="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-light-accent dark:bg-dark-accent text-white shadow-lg opacity-0 pointer-events-none translate-y-4 transition-all duration-300 hover:bg-light-hover dark:hover:bg-dark-hover hover:scale-110">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="/js/main.js" defer></script>
   <script src="/js/theme.js" defer></script>
+  <!-- Iconify loaded last so it never blocks page render -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
+
+  <script>
+    // Hide preloader once everything is painted and images are loaded
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('page-preloader');
+      if (preloader) preloader.classList.add('hidden');
+    });
+    // Fallback: force-hide after 3s even if something stalls
+    setTimeout(() => {
+      const p = document.getElementById('page-preloader');
+      if (p) p.classList.add('hidden');
+    }, 3000);
+  </script>
 
   <%- include('partials/footer') %>
 </body>

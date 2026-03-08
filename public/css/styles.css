@@ -13,6 +13,13 @@
   .nav-link:hover::after {
     @apply w-full;
   }
+  /* Active nav state — set by JS scroll observer */
+  .nav-link.active {
+    @apply text-light-accent dark:text-dark-accent;
+  }
+  .nav-link.active::after {
+    @apply w-full;
+  }
   .nav-link-mobile {
     @apply block py-2 px-4 rounded-lg hover:bg-light-secondary dark:hover:bg-dark-secondary text-light-text dark:text-dark-text;
   }
@@ -30,6 +37,31 @@ html {
 }
 body {
   @apply bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text transition-colors duration-200;
+}
+
+/* Typewriter blinking cursor */
+.typewriter-cursor {
+  animation: cursor-blink 0.75s step-start infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Image skeleton shimmer — shown while image is loading */
+.img-skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+html.dark .img-skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* Dark mode transitions */

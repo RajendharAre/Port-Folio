@@ -107,3 +107,133 @@ const scrollHandler = () => {
 
 // Add scroll event listener with throttling
 window.addEventListener('scroll', scrollHandler, { passive: true });
+
+// ─── Active Nav Highlight on Scroll ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav .nav-link');
+
+  if (!sections.length || !navLinks.length) return;
+
+  const activateLink = (id) => {
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${id}`) {
+        link.classList.add('active');
+      }
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activateLink(entry.target.id);
+      }
+    });
+  }, {
+    threshold: 0.3,           // 30% of section must be visible
+    rootMargin: '-80px 0px -40% 0px'  // offset for fixed header height
+  });
+
+  sections.forEach(section => sectionObserver.observe(section));
+});
+
+// ─── Scroll Progress Bar ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const progressBar = document.getElementById('scrollProgress');
+  if (!progressBar) return;
+
+  const updateProgress = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  };
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+});
+
+// ─── Back to Top Button ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  const toggleVisibility = () => {
+    if (window.scrollY > 400) {
+      btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    } else {
+      btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+    }
+  };
+
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  toggleVisibility();
+});
+
+// ─── Typewriter Effect ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('typewriter');
+  if (!el) return;
+
+  const phrases = [
+    'Full-stack developer creating digital experiences',
+    'Building fast, responsive web apps',
+    'React · Node.js · PostgreSQL',
+    'Turning ideas into products',
+    'Open to freelance & full-time roles',
+  ];
+
+  let phraseIndex = 0;
+  let charIndex   = 0;
+  let isDeleting  = false;
+  let isPaused    = false;
+
+  const TYPE_SPEED   = 55;   // ms per character while typing
+  const DELETE_SPEED = 28;   // ms per character while deleting
+  const PAUSE_AFTER  = 1800; // ms pause at end of full phrase
+  const PAUSE_BEFORE = 400;  // ms pause before starting to delete
+
+  const tick = () => {
+    const current = phrases[phraseIndex];
+
+    if (!isDeleting) {
+      // Typing forward
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+
+      if (charIndex === current.length) {
+        // Reached end — pause then start deleting
+        isPaused = true;
+        setTimeout(() => {
+          isPaused    = false;
+          isDeleting  = true;
+          setTimeout(tick, PAUSE_BEFORE);
+        }, PAUSE_AFTER);
+        return;
+      }
+    } else {
+      // Deleting backward
+      charIndex--;
+      el.textContent = current.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        // Done deleting — move to next phrase
+        isDeleting  = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+    }
+
+    setTimeout(tick, isDeleting ? DELETE_SPEED : TYPE_SPEED);
+  };
+
+  // Small initial delay so the hero fade-in runs first
+  setTimeout(tick, 600);
+});

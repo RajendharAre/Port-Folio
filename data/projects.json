@@ -2,28 +2,34 @@
   {
     "id": 1,
     "title": "Fashion E-Commerce Website",
-    "description": "A full-stack e-commerce platform with admin and user interfaces",
+    "description": "A production-ready full-stack e-commerce platform featuring a customer-facing storefront and a complete admin dashboard. Supports product management, cart, order tracking and user authentication.",
     "technologies": ["HTML", "CSS", "JavaScript", "Python", "Flask", "SQLAlchemy"],
+    "category": "Full-Stack",
+    "year": "2024",
     "image_url": "/assets/projectImages/FashionFinds.webp",
-    "github_url": "https://github.com/RajendharAre/FashionEcommerce",
-    "live_url": "https://yourecommerce.example.com"
+    "github_url": "https://github.com/RajendharAre/FashionFinds",
+    "live_url": ""
   },
   {
     "id": 2,
-    "title": "Portfolio Template",
-    "description": "A responsive portfolio template built with Tailwind CSS",
-    "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
+    "title": "Developer Portfolio",
+    "description": "A high-performance personal portfolio built with Node.js, Express and Tailwind CSS. Features dark mode, scroll animations, typewriter effect, image optimisation and a working contact form via Nodemailer.",
+    "technologies": ["Node.js", "Express", "EJS", "Tailwind CSS", "JavaScript"],
+    "category": "Full-Stack",
+    "year": "2025",
     "image_url": "/assets/projectImages/Portfolio.webp",
     "github_url": "https://github.com/RajendharAre/Port-Folio",
-    "live_url": "https://yourportfolio.example.com"
+    "live_url": "https://rajendhar-are33.vercel.app/"
   },
   {
     "id": 3,
-    "title": "Chat Bot Application",
-    "description": "A Multitasking AI agent",
-    "technologies": ["Python", "Google API", "HTML", "CSS", "JavaScript"],
+    "title": "Multi-Agent AI Chatbot",
+    "description": "A multitasking AI agent chatbot built during my internship at ezSCM Technology. Integrates Google Gemini API to handle diverse tasks — web search, code generation, summarisation and Q&A — in a single conversational interface.",
+    "technologies": ["Python", "Google Gemini API", "HTML", "CSS", "JavaScript"],
+    "category": "AI / ML",
+    "year": "2024",
     "image_url": "/assets/projectImages/MultiAgent.webp",
     "github_url": "https://github.com/RajendharAre/ezSCM-internship-project",
-    "live_url": "https://yourtaskapp.example.com"
+    "live_url": ""
   }
 ]
