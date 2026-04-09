@@ -990,6 +990,10 @@ select {
   top: 0.75rem;
 }
 
+.bottom-24 {
+  bottom: 6rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1081,6 +1085,10 @@ select {
 
 .mt-12 {
   margin-top: 3rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-3 {
@@ -1261,6 +1269,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .max-w-2xl {
@@ -1576,6 +1588,10 @@ select {
   overflow: hidden;
 }
 
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -1702,6 +1718,10 @@ select {
 .bg-red-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+
+.bg-light-accent\/15 {
+  background-color: rgb(37 99 235 / 0.15);
 }
 
 .bg-gradient-to-r {
@@ -1841,6 +1861,11 @@ select {
   padding-bottom: 2rem;
 }
 
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -1880,6 +1905,11 @@ select {
   line-height: 2.5rem;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1914,6 +1944,11 @@ select {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.text-amber-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity, 1));
 }
 
 .text-blue-500 {
@@ -2346,6 +2381,10 @@ html {
   border-color: rgb(168 85 247 / 0.3);
 }
 
+.hover\:border-light-accent\/40:hover {
+  border-color: rgb(37 99 235 / 0.4);
+}
+
 .hover\:bg-light-accent\/10:hover {
   background-color: rgb(37 99 235 / 0.1);
 }
@@ -2490,6 +2529,10 @@ html {
   background-color: rgb(192 132 252 / 0.1);
 }
 
+.dark\:bg-dark-accent\/15:is(.dark *) {
+  background-color: rgb(59 130 246 / 0.15);
+}
+
 .dark\:from-cyan-400:is(.dark *) {
   --tw-gradient-from: #22d3ee var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(34 211 238 / 0) var(--tw-gradient-to-position);
@@ -2570,6 +2613,10 @@ html {
   border-color: rgb(59 130 246 / 0.5);
 }
 
+.dark\:hover\:border-dark-accent\/40:hover:is(.dark *) {
+  border-color: rgb(59 130 246 / 0.4);
+}
+
 .dark\:hover\:bg-dark-accent\/10:hover:is(.dark *) {
   background-color: rgb(59 130 246 / 0.1);
 }
@@ -2611,6 +2658,11 @@ html {
 @media (min-width: 640px) {
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 

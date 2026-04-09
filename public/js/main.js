@@ -157,15 +157,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // ─── Back to Top Button ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('backToTop');
+  const quickLinks = document.getElementById('floatingQuickLinks');
   if (!btn) return;
 
   const toggleVisibility = () => {
     if (window.scrollY > 400) {
       btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
       btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      if (quickLinks) {
+        quickLinks.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        quickLinks.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
     } else {
       btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
       btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      if (quickLinks) {
+        quickLinks.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        quickLinks.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
     }
   };
 
