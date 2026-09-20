@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
 
@@ -27,6 +28,46 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Behind a reverse proxy on Render/Vercel — needed for accurate rate-limit IPs
 app.set('trust proxy', process.env.NODE_ENV === 'production' ? 1 : false);
+
+// CV download protection — the resume may only be downloaded after the
+// visitor has loaded the homepage (a signed, httpOnly cookie proves it).
+// This blocks direct URL access, `curl` and blind devtools grabs of the PDF.
+const CV_COOKIE = 'pf_visit';
+const CV_SECRET = process.env.CV_SIGN_SECRET || crypto.randomBytes(32).toString('hex');
+
+const signVisit = () =>
+  crypto.createHmac('sha256', CV_SECRET).update('portfolio-visit').digest('base64url');
+
+const isVisitToken = (token) => {
+  if (typeof token !== 'string') return false;
+  const provided = Buffer.from(token);
+  const expected = Buffer.from(signVisit());
+  return provided.length === expected.length && crypto.timingSafeEqual(provided, expected);
+};
+
+const parseCookies = (req) => {
+  const cookies = {};
+  const header = req.headers.cookie;
+  if (!header) return cookies;
+  header.split(';').forEach((part) => {
+    const index = part.indexOf('=');
+    if (index === -1) return;
+    const key = part.slice(0, index).trim();
+    const value = part.slice(index + 1).trim();
+    if (key) cookies[key] = decodeURIComponent(value);
+  });
+  return cookies;
+};
+
+// Gate all PDF downloads behind the visit cookie
+app.use((req, res, next) => {
+  if (req.path.endsWith('.pdf') || req.path === '/resume') {
+    if (!isVisitToken(parseCookies(req)[CV_COOKIE])) {
+      return res.status(403).type('text/plain').send('403 — Forbidden');
+    }
+  }
+  next();
+});
 
 // Serve static files with long-term caching
 app.use(express.static(path.join(__dirname, 'public'), {
@@ -71,7 +112,20 @@ const contactLimiter = rateLimit({
 
 // Routes
 app.get('/', (req, res) => {
+  // Grant resume download access for this visit
+  res.cookie(CV_COOKIE, signVisit(), {
+    httpOnly: true,                     // Not readable from document.cookie / page JS
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 30 * 24 * 60 * 60 * 1000,   // 30 days
+    secure: process.env.NODE_ENV === 'production'
+  });
   res.render('home', { projects: projects, services: services });
+});
+
+// Dedicated resume endpoint (also gated by the visit cookie above)
+app.get('/resume', (req, res) => {
+  res.download(path.join(__dirname, 'public', 'assets', 'Rajendhar_Resume.pdf'), site.resumeDownload);
 });
 
 app.post('/contact', contactLimiter, async (req, res) => {
