@@ -33,7 +33,14 @@ app.set('trust proxy', process.env.NODE_ENV === 'production' ? 1 : false);
 // visitor has loaded the homepage (a signed, httpOnly cookie proves it).
 // This blocks direct URL access, `curl` and blind devtools grabs of the PDF.
 const CV_COOKIE = 'pf_visit';
-const CV_SECRET = process.env.CV_SIGN_SECRET || crypto.randomBytes(32).toString('hex');
+// Stable signing key. Never a random per-boot value — on serverless hosts
+// (Vercel/Render) each request may run on a different instance, and a random
+// key would make the page-load cookie unverifiable on the download request.
+const CV_SECRET = process.env.CV_SIGN_SECRET || 'portfolio-cv-signing-key';
+
+if (!process.env.CV_SIGN_SECRET && process.env.NODE_ENV === 'production') {
+  console.warn('[app] CV_SIGN_SECRET is not set; using the built-in fallback key. Set it in production for a stable, private signing key.');
+}
 
 const signVisit = () =>
   crypto.createHmac('sha256', CV_SECRET).update('portfolio-visit').digest('base64url');
