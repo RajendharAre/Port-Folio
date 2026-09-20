@@ -1,0 +1,18 @@
+{
+  "name": "Rajendhar Are",
+  "tagline": "Full-stack developer creating digital experiences",
+  "logoUrl": "/assets/myLogo.svg",
+  "profileImage": "/assets/Rajendhar_Cropped.webp",
+  "profileImageFallback": "/assets/RajendharImage.webp",
+  "resumeUrl": "/assets/Rajendhar_Resume.pdf",
+  "resumeDownload": "Rajendhar_Are_Resume.pdf",
+  "email": "arerajendhar2903@gmail.com",
+  "phone": "+91 8688907550",
+  "location": "Balapur, RangaReddy, TS",
+  "education": "B.E Computer Science(Data Science)",
+  "university": "MVSR Engineering College",
+  "github": "https://github.com/RajendharAre",
+  "linkedin": "https://www.linkedin.com/in/rajendhar-are/",
+  "instagram": "https://www.instagram.com/rajendharare33/",
+  "canonicalUrl": "https://rajendharare.tech"
+}

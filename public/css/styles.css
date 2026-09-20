@@ -204,3 +204,24 @@ html {
   animation-iteration-count: infinite;
   transform: translateZ(0); /* Force hardware acceleration */
 }
+
+/* Visible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+html.dark :focus-visible {
+  outline-color: #3b82f6;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

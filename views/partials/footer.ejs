@@ -3,17 +3,17 @@
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-4 md:mb-0">
         <p class="text-light-muted dark:text-dark-muted">
-          &copy; <%= currentYear %>  Rajendhar Are. All rights reserved.
+          &copy; <%= currentYear %>  <%= site.name %>. All rights reserved.
         </p>
       </div>
       <div class="flex space-x-6">
-        <a href="https://github.com/RajendharAre" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
+        <a href="<%= site.github %>" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
           <span class="sr-only">GitHub</span>
-          <iconify-icon icon="logos:github-icon" width="24" height="24"></iconify-icon>
+          <iconify-icon icon="logos:github-icon" width="24" height="24" aria-hidden="true"></iconify-icon>
         </a>
-        <a href="https://www.linkedin.com/in/rajendhar-are/" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
+        <a href="<%= site.linkedin %>" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition">
           <span class="sr-only">LinkedIn</span>
-          <iconify-icon icon="logos:linkedin-icon" width="24" height="24"></iconify-icon>
+          <iconify-icon icon="logos:linkedin-icon" width="24" height="24" aria-hidden="true"></iconify-icon>
         </a>
       </div>
     </div>

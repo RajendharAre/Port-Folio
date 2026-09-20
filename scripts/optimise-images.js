@@ -18,6 +18,9 @@ const targets = [
   ['projectImages/FashionFinds.webp',  'projectImages/FashionFinds.webp',  MAX_W ],
   ['projectImages/Portfolio.webp',     'projectImages/Portfolio.webp',     MAX_W ],
   ['projectImages/MultiAgent.webp',    'projectImages/MultiAgent.webp',    MAX_W ],
+  ['projectImages/algoview.webp',      'projectImages/algoview.webp',      MAX_W ],
+  ['projectImages/sentxstock.webp',    'projectImages/sentxstock.webp',    MAX_W ],
+  ['projectImages/ai-planet.webp',     'projectImages/ai-planet.webp',     MAX_W ],
   // Profile picture fallback (already have Rajendhar_Cropped.webp @ 34 KB)
   ['RajendharImage.webp',              'RajendharImage.webp',              600   ],
 ];
