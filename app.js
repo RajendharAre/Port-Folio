@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
 
@@ -30,27 +29,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('trust proxy', process.env.NODE_ENV === 'production' ? 1 : false);
 
 // CV download protection — the resume may only be downloaded after the
-// visitor has loaded the homepage (a signed, httpOnly cookie proves it).
-// This blocks direct URL access, `curl` and blind devtools grabs of the PDF.
+// visitor has loaded the homepage (the httpOnly 'pf_visit' cookie proves it).
+// The cookie is presence-checked only (no per-boot signing key), so it works
+// reliably across serverless instances on Vercel/Render while still blocking
+// blind direct-URL / `curl` access to the PDF.
 const CV_COOKIE = 'pf_visit';
-// Stable signing key. Never a random per-boot value — on serverless hosts
-// (Vercel/Render) each request may run on a different instance, and a random
-// key would make the page-load cookie unverifiable on the download request.
-const CV_SECRET = process.env.CV_SIGN_SECRET || 'portfolio-cv-signing-key';
-
-if (!process.env.CV_SIGN_SECRET && process.env.NODE_ENV === 'production') {
-  console.warn('[app] CV_SIGN_SECRET is not set; using the built-in fallback key. Set it in production for a stable, private signing key.');
-}
-
-const signVisit = () =>
-  crypto.createHmac('sha256', CV_SECRET).update('portfolio-visit').digest('base64url');
-
-const isVisitToken = (token) => {
-  if (typeof token !== 'string') return false;
-  const provided = Buffer.from(token);
-  const expected = Buffer.from(signVisit());
-  return provided.length === expected.length && crypto.timingSafeEqual(provided, expected);
-};
 
 const parseCookies = (req) => {
   const cookies = {};
@@ -66,11 +49,18 @@ const parseCookies = (req) => {
   return cookies;
 };
 
-// Gate all PDF downloads behind the visit cookie
+const hasVisitCookie = (req) => {
+  const cookie = parseCookies(req)[CV_COOKIE];
+  return typeof cookie === 'string' && cookie.length > 0;
+};
+
+// Gate resume/PDF requests: without a valid visit cookie, send the visitor to
+// the homepage (which sets the cookie) instead of a hard 403 that breaks the
+// download while the request is legit.
 app.use((req, res, next) => {
-  if (req.path.endsWith('.pdf') || req.path === '/resume') {
-    if (!isVisitToken(parseCookies(req)[CV_COOKIE])) {
-      return res.status(403).type('text/plain').send('403 — Forbidden');
+  if (req.path === '/resume' || req.path.toLowerCase().endsWith('.pdf')) {
+    if (!hasVisitCookie(req)) {
+      return res.redirect('/');
     }
   }
   next();
@@ -120,7 +110,7 @@ const contactLimiter = rateLimit({
 // Routes
 app.get('/', (req, res) => {
   // Grant resume download access for this visit
-  res.cookie(CV_COOKIE, signVisit(), {
+  res.cookie(CV_COOKIE, '1', {
     httpOnly: true,                     // Not readable from document.cookie / page JS
     sameSite: 'lax',
     path: '/',
@@ -130,9 +120,10 @@ app.get('/', (req, res) => {
   res.render('home', { projects: projects, services: services });
 });
 
-// Dedicated resume endpoint (also gated by the visit cookie above)
+// Dedicated resume endpoint (also gated by the visit cookie above).
+// The PDF lives outside /public so it is never served by the static handler.
 app.get('/resume', (req, res) => {
-  res.download(path.join(__dirname, 'public', 'assets', 'Rajendhar_Resume.pdf'), site.resumeDownload);
+  res.download(path.join(__dirname, 'private', 'Rajendhar_Resume.pdf'), site.resumeDownload);
 });
 
 app.post('/contact', contactLimiter, async (req, res) => {
