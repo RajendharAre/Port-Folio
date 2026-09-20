@@ -39,6 +39,11 @@ body {
   @apply bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text transition-colors duration-200;
 }
 
+/* Anchor targets clear the fixed header when scrolling via nav links */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 /* Typewriter blinking cursor */
 .typewriter-cursor {
   animation: cursor-blink 0.75s step-start infinite;
